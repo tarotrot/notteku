@@ -7,29 +7,4 @@
   <%= link_to "編集", [:edit, @user] %>
 </div>
 
-<table class="attr">
-  <tr>
-    <th>ユーザー名</th>
-    <td><%= @user.name %></td>
-  </tr>
-  <tr>
-    <th>性別</th>
-    <td><%= @user.sex == 1 ? "女" : "男" %></td>
-  </tr>
-  <tr>
-    <th>誕生日</th>
-    <td><%= @user.birthday&.strftime("%Y年%m月%d日") %></td>
-  </tr>
-  <tr>
-    <th>電話番号</th>
-    <td><%= @user.phone %></td>
-  </tr>
-  <tr>
-    <th>メールアドレス</th>
-    <td><%= @user.email %></td>
-  </tr>
-  <tr>
-    <th>管理者</th>
-    <td><%= @user.admin? ? "○" : "－" %></td>
-  </tr>
-</table>
+<%= render "body" %>
