@@ -1,3 +1,5 @@
+<%= render "shared/errors", obj: @user %>
+
 <% if controller.kind_of?(Admin::UsersController) %>
   <h2><%= @user.name %></h2>
   <table class="attr">

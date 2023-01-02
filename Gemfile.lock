@@ -53,6 +53,11 @@ GEM
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     date (3.3.1)
+    date_validator (0.12.0)
+      activemodel (>= 3)
+      activesupport (>= 3)
+    email_validator (1.6.0)
+      activemodel
     erubi (1.11.0)
     execjs (2.8.1)
     ffi (1.15.5)
@@ -63,6 +68,21 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
+    kaminari-i18n (0.5.0)
+      kaminari
+      rails
     libv8-node (15.14.0.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -186,7 +206,11 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   byebug
+  date_validator (~> 0.12.0)
+  email_validator (~> 1.6)
   jbuilder (~> 2.5)
+  kaminari
+  kaminari-i18n
   listen (>= 3.0.5, < 3.2)
   mini_racer (= 0.4.0)
   puma (~> 3.11)

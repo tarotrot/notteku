@@ -5,9 +5,9 @@ names = %w(Taro Jiro Hana John Mike Sophy Bill Alex Mary Tom)
     admin: (idx == 0),
     sex: [0, 0, 1][idx % 3],
     birthday: "1981-12-01",
-    phone: "012-3456-7890",
+    phone: "012-3456-789#{idx}",
     email: "#{names[idx]}@example.com",
-    password: "notteku!",
-    password_confirmation: "notteku!"
+    password: "senshudaigaku",
+    password_confirmation: "senshudaigaku"
   )
 end
