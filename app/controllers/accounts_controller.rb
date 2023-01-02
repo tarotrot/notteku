@@ -34,4 +34,11 @@ class AccountsController < ApplicationController
     end
   end
 
+  # ユーザの削除
+  def destroy
+    @user = current_user
+    @user.destroy
+      cookies.delete(:user_id)
+      redirect_to root_path, notice: "ユーザを削除しました。"
+    end
 end

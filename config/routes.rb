@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   get "internal_server_error" => "top#internal_server_error"
 
   resource :session, only: [:create, :destroy]
-  resource :account, except: [:index, :destroy]
+  resource :account, except: [:index]
 
   namespace :admin do
     root "top#index"
-    resources :users
+    resources :users, except: [:new, :create]
   end
 end
