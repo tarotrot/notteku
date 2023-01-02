@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   get "forbidden" => "top#forbidden"
   get "internal_server_error" => "top#internal_server_error"
 
-  resources :users
-
   resource :session, only: [:create, :destroy]
   resource :account, except: [:index, :destroy]
 

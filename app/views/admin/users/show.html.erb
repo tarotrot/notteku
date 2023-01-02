@@ -3,7 +3,7 @@
 <h1><%= @page_title %></h1>
 
 <div class="toolbar">
-  <%= link_to "編集", [:edit, @user] %>
+  <%= link_to "管理者権限編集", [:edit, :admin, @user] %>
 </div>
 
 <%= render "body" %>
