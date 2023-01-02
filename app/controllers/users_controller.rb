@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :login_required
+
   # 会員一覧
   def index
     @users = User.order(params[:id])#.page(params[:page]).per(15)
