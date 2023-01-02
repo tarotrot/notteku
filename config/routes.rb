@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resource :session, only: [:create, :destroy]
   resource :account, except: [:index]
+  resource :password, only: [:show, :edit, :update]
 
   namespace :admin do
     root "top#index"
