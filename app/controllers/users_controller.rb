@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   # 会員の新規登録
   def create
-    @user = User.new(params[:member])
+    @user = User.new(params[:user])
     if @user.save
       # redirect_to [:admin, @user], notice: "会員を登録しました。"
       redirect_to @user, notice: "会員を登録しました。"
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
   # 会員情報の更新
   def update
     @user = User.find(params[:id])
-    @user.assign_attributes(params[:member])
+    @user.assign_attributes(params[:user])
     if @user.save
       # redirect_to [:admin, @user], notice: "会員情報を更新しました。"
       redirect_to @user, notice: "会員情報を更新しました。"

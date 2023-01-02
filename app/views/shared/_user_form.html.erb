@@ -1,0 +1,9 @@
+<% if controller.kind_of?(Admin::UsersController) %>
+  <h2><%= @user.name %></h2>
+  <tr>
+    <th><%= form.label :admin, "管理者" %></th>
+    <td>
+      <%= form.check_box :admin %>
+    </td>
+  </tr>
+<% end %>
