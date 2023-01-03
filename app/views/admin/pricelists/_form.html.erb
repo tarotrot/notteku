@@ -1,0 +1,24 @@
+<table class="attr">
+  <tr>
+    <th><%= form.label :name, "期間名" %></th>
+    <td><%= form.text_field :name %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :season_start, "開始日時",
+              for: "pricelist_season_start_1i" %></th>
+    <td><%= form.datetime_select :season_start,
+              start_year: 1940, end_year: Time.current.year,
+              use_month_numbers: true %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :season_end, "終了日時",
+              for: "pricelist_season_end_1i" %></th>
+    <td><%= form.datetime_select :season_end,
+              start_year: 1940, end_year: Time.current.year,
+              use_month_numbers: true %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :basic_price, "基本料金" %></th>
+    <td><%= form.text_field :basic_price, size: 8 %></td>
+  </tr>
+</table>

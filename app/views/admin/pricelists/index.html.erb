@@ -1,0 +1,52 @@
+<% @page_title = "料金一覧" %>
+<h1><%= @page_title %></h1>
+<%= link_to "新規料金追加", :new_admin_pricelist %>
+
+<% if @pricelists.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>期間名</th>
+        <th>開始日時</th>
+        <th>終了日時</th>
+        <th>金額</th>
+        <th>変更</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pricelists.each do |pricelist| %>
+        <tr>
+          <td style="text-align: right"><%= pricelist.id %></td>
+          <td><%= pricelist.name %></td>
+          <td>
+            <% if pricelist.season_start.present?%>
+              <%= pricelist.season_start.strftime("%Y/%m/%d %H:%M") %>
+            <% else %>
+              <%= "-" %>
+            <% end %>
+          </td>
+          <td>
+            <% if pricelist.season_end.present?%>
+              <%= pricelist.season_end.strftime("%Y/%m/%d %H:%M") %>
+            <% else %>
+              <%= "-" %>
+            <% end %>
+          </td>
+          <td><%= pricelist.basic_price %></td>
+          <td>
+            <%= link_to "変更", [:edit, :admin, pricelist] %>
+          </td>
+          <td>
+            <%= link_to "削除", [:admin, pricelist], method: :delete,
+              data: { confirm: "本当に削除しますか?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%# <%= paginate @users %> %>
+<% else %>
+  <p>料金項目情報がありません。</p>
+<% end %>

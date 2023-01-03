@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 2022_12_16_083150) do
 
   create_table "pricelists", force: :cascade do |t|
     t.integer "basic_price", null: false
-    t.datetime "season_start", null: false
-    t.datetime "season_end", null: false
+    t.datetime "season_start"
+    t.datetime "season_end"
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

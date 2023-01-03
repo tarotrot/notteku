@@ -1,0 +1,10 @@
+<% @page_title = "料金項目の編集" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "料金表に戻る", :admin_pricelists %></div>
+
+<%= form_for [:admin, @pricelist] do |form| %>
+  <%= render "form", form: form %>
+  <div><%= form.submit %></div>
+<% end %>
