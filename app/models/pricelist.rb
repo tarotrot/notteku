@@ -12,6 +12,8 @@ class Pricelist < ApplicationRecord
   validate :start_finish_check
 
   def start_finish_check
-    errors.add(:season_end, "は開始時刻より遅い時間を選択してください") if self.season_start > self.season_end
+    if self.season_start != nil && self.season_end != nil
+      errors.add(:season_end, "は開始時刻より遅い時間を選択してください") if self.season_start > self.season_end
+    end
   end
 end

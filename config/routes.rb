@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     root "top#index"
     resources :users, except: [:new, :create]
     resources :pricelists, except: [:show]
+    resources :stores
   end
 end

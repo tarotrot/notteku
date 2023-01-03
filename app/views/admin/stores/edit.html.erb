@@ -1,0 +1,10 @@
+<% @page_title = "店舗情報変更" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "店舗一覧に戻る", :admin_stores %></div>
+
+<%= form_for [:admin, @store] do |form| %>
+  <%= render "form", form: form %>
+  <div><%= form.submit %></div>
+<% end %>

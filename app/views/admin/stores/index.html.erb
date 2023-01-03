@@ -1,0 +1,31 @@
+<% @page_title = "店舗一覧" %>
+<h1><%= @page_title %></h1>
+<%= link_to "新規店舗追加", :new_admin_store %>
+
+<% if @stores.present? %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>店舗名</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @stores.each do |store| %>
+        <tr>
+          <td style="text-align: right"><%= store.id %></td>
+          <td><%= link_to store.name, [:admin, store] %></td>
+          <td>
+            <%= link_to "店舗情報変更", [:edit, :admin, store] %> |
+            <%= link_to "削除", [:admin, store], method: :delete,
+              data: { confirm: "本当に削除しますか?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%# <%= paginate @users %> %>
+<% else %>
+  <p>店舗情報がありません。</p>
+<% end %>

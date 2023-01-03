@@ -1,0 +1,30 @@
+<%= render "shared/errors", obj: @store %>
+
+<table class="attr">
+  <tr>
+    <th><%= form.label :store_code, "店舗コード" %></th>
+    <td><%= form.text_field :store_code %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :name, "店舗名" %></th>
+    <td><%= form.text_field :name %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :start_time, "営業開始時間",
+              for: "store_start_time_1i" %></th>
+    <td><%= form.time_select :start_time %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :end_time, "営業終了時間",
+              for: "store_end_time_1i" %></th>
+    <td><%= form.time_select :end_time %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :address, "住所" %></th>
+    <td><%= form.text_field :address %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :phone_number, "電話番号" %></th>
+    <td><%= form.text_field :phone_number %></td>
+  </tr>
+</table>

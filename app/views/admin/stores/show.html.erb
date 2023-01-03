@@ -1,0 +1,34 @@
+<% @page_title = "店舗の詳細" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar">
+  <%= link_to "店舗情報編集", [:edit, :admin, @store] %>
+</div>
+
+<table class="attr">
+  <tr>
+    <th>店舗コード</th>
+    <td><%= @store.store_code %></td>
+  </tr>
+  <tr>
+    <th>店舗名</th>
+    <td><%= @store.name %></td>
+  </tr>
+  <tr>
+    <th>営業開始日時</th>
+    <td><%= @store.start_time&.strftime("%H:%M") %></td>
+  </tr>
+  <tr>
+    <th>営業終了日時</th>
+    <td><%= @store.end_time&.strftime("%H:%M") %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @store.address %></td>
+  </tr>
+  <tr>
+    <th>電話番号</th>
+    <td><%= @store.phone_number %></td>
+  </tr>
+</table>

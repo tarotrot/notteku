@@ -20,10 +20,12 @@ class Admin::PricelistsController < Admin::Base
     end
   end
 
+  # 期間料金登録フォーム
   def new
     @pricelist = Pricelist.new
   end
 
+  # 期間料金の新規登録
   def create
     @pricelist = Pricelist.new(params[:pricelist])
     if @pricelist.save
