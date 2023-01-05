@@ -19,7 +19,7 @@ class Admin::CarsController < Admin::Base
     @car = Car.find(params[:id])
     @car.assign_attributes(car_params)
     if @car.save
-      redirect_to :admin_stores, notice: "車情報を更新しました。"
+      redirect_to :admin_cars, notice: "車情報を更新しました。"
     else
       render "edit"
     end
@@ -52,7 +52,7 @@ class Admin::CarsController < Admin::Base
     params.require(:car).permit(
       :car_code,
       :car_type,
-      :store,
+      :store_id,
       :name,
       :status,
       :price

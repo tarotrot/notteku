@@ -1,0 +1,30 @@
+<%= render "shared/errors", obj: @car %>
+
+<table class="attr">
+  <tr>
+    <th><%= form.label :car_code, "店舗コード" %></th>
+    <td><%= form.text_field :car_code %></td>
+  </tr>
+  <tr>
+    <% car_type_options = ["乗用車", "軽自動車", "高級車", "ミニバン・ワゴン車", "トラック"] %>
+    <th><%= form.label :car_type, "車種" %></th>
+    <td><%= form.select :car_type, car_type_options %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :store, "所在" %></th>
+    <td><%= form.collection_select :store_id, Store.all, :id, :name %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :name, "車名" %></th>
+    <td><%= form.text_field :name %></td>
+  </tr>
+  <tr>
+    <% status_options = ["準備中", "在庫"] %>
+    <th><%= form.label :status, "状態" %></th>
+    <td><%= form.select :status, status_options %></td>
+  </tr>
+  <tr>
+    <th><%= form.label :price, "料金" %></th>
+    <td><%= form.text_field :price %></td>
+  </tr>
+</table>

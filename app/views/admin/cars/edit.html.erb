@@ -1,0 +1,10 @@
+<% @page_title = "車情報変更" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar"><%= link_to "車一覧に戻る", :admin_cars %></div>
+
+<%= form_for [:admin, @car] do |form| %>
+  <%= render "form", form: form %>
+  <div><%= form.submit %></div>
+<% end %>
