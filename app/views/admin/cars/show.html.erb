@@ -1,0 +1,34 @@
+<% @page_title = "車の詳細" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar">
+  <%= link_to "車情報編集", [:edit, :admin, @car] %>
+</div>
+
+<table class="attr">
+  <tr>
+    <th>車コード</th>
+    <td><%= @car.car_code %></td>
+  </tr>
+  <tr>
+    <th>車種</th>
+    <td><%= @car.car_type %></td>
+  </tr>
+  <tr>
+    <th>所在</th>
+    <td><%= @car.store.name %></td>
+  </tr>
+  <tr>
+    <th>車名</th>
+    <td><%= @car.name %></td>
+  </tr>
+  <tr>
+    <th>状態</th>
+    <td><%= @car.status %></td>
+  </tr>
+  <tr>
+    <th>値段</th>
+    <td><%= @car.price %></td>
+  </tr>
+</table>

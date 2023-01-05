@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2022_12_16_083150) do
   create_table "cars", force: :cascade do |t|
     t.string "car_code", null: false
     t.string "car_type", null: false
-    t.integer "store_id", null: false
+    t.integer "store_id"
     t.string "name", null: false
     t.string "status", null: false
     t.integer "price", null: false

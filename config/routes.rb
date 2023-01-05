@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     resources :users, except: [:new, :create]
     resources :pricelists, except: [:show]
     resources :stores
+    resources :cars
   end
 end
