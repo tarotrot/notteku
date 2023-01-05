@@ -17,7 +17,7 @@ class Admin::UsersController < Admin::Base
   # ユーザ情報の更新
   def update
     @user = User.find(params[:id])
-    @user.assign_attributes(params[:user])
+    @user.assign_attributes(user_params)
     if @user.save
       redirect_to [:admin, @user], notice: "会員情報を更新しました。"
     else
@@ -30,5 +30,10 @@ class Admin::UsersController < Admin::Base
     @user = User.find(params[:id])
     @user.destroy
     redirect_to :admin_users, notice: "会員を削除しました。"
+  end
+
+  # ストロング・パラメータ
+  private def user_params
+    params.require(:user).permit(:admin)
   end
 end

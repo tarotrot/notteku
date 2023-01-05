@@ -17,7 +17,7 @@ class Admin::CarsController < Admin::Base
   # 車情報の更新
   def update
     @car = Car.find(params[:id])
-    @car.assign_attributes(params[:car])
+    @car.assign_attributes(car_params)
     if @car.save
       redirect_to :admin_stores, notice: "車情報を更新しました。"
     else
@@ -32,7 +32,7 @@ class Admin::CarsController < Admin::Base
 
   # 車の新規登録
   def create
-    @car = Car.new(params[:car])
+    @car = Car.new(car_params)
     if @car.save
       redirect_to :admin_cars, notice: "車を登録しました。"
     else
@@ -45,5 +45,17 @@ class Admin::CarsController < Admin::Base
     @car = Car.find(params[:id])
     @car.destroy
     redirect_to :admin_cars, notice: "車を削除しました。"
+  end
+
+  # ストロング・パラメータ
+  private def car_params
+    params.require(:car).permit(
+      :car_code,
+      :car_type,
+      :store,
+      :name,
+      :status,
+      :price
+    )
   end
 end

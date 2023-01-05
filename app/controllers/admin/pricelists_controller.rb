@@ -12,7 +12,7 @@ class Admin::PricelistsController < Admin::Base
   # 料金情報の更新
   def update
     @pricelist = Pricelist.find(params[:id])
-    @pricelist.assign_attributes(params[:pricelist])
+    @pricelist.assign_attributes(pricelist_params)
     if @pricelist.save
       redirect_to :admin_pricelists, notice: "料金表の項目を更新しました。"
     else
@@ -27,7 +27,7 @@ class Admin::PricelistsController < Admin::Base
 
   # 期間料金の新規登録
   def create
-    @pricelist = Pricelist.new(params[:pricelist])
+    @pricelist = Pricelist.new(pricelist_params)
     if @pricelist.save
       redirect_to :admin_pricelists, notice: "料金表に項目を登録しました。"
     else
@@ -40,5 +40,15 @@ class Admin::PricelistsController < Admin::Base
     @pricelist = Pricelist.find(params[:id])
     @pricelist.destroy
     redirect_to :admin_pricelists, notice: "料金表の項目を削除しました。"
+  end
+
+  # ストロング・パラメータ
+  private def pricelist_params
+    params.require(:pricelist).permit(
+      :name,
+      :season_start,
+      :season_end,
+      :basic_price
+    )
   end
 end

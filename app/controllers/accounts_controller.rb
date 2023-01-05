@@ -11,7 +11,7 @@ class AccountsController < ApplicationController
 
   def update
     @user = current_user
-    @user.assign_attributes(params[:account])
+    @user.assign_attributes(account_params)
     if @user.save
       redirect_to :account, notice: "アカウント情報を更新しました。"
     else
@@ -24,7 +24,7 @@ class AccountsController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:account])
+    @user = User.new(account_params)
     if @user.save
       user = User.find_by(name: @user.name)
       cookies[:user_id] = user.id
@@ -38,7 +38,23 @@ class AccountsController < ApplicationController
   def destroy
     @user = current_user
     @user.destroy
-      cookies.delete(:user_id)
-      redirect_to root_path, notice: "ユーザを削除しました。"
-    end
+    cookies.delete(:user_id)
+    redirect_to root_path, notice: "ユーザを削除しました。"
+  end
+
+  # ストロング・パラメータ
+  private def account_params
+    attrs = [
+      :name,
+      :sex,
+      :birthday,
+      :phone,
+      :email
+    ]
+
+    attrs << :password if action_name == "create"
+
+    params.require(:account).permit(attrs)
+  end
+
 end
