@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
 
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
 
   validates :name, presence: true,
     length: { maximum: 19, allow_blank: true }

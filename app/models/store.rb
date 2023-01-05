@@ -1,6 +1,6 @@
 class Store < ApplicationRecord
   has_many :bookings
-  has_many :cars
+  has_many :cars, dependent: :destroy
 
   validates :store_code, presence: true,
     format: { with: /\A[a-zA-Z0-9]+\z/, allow_blank: true },
