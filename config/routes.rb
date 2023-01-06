@@ -14,5 +14,6 @@ Rails.application.routes.draw do
     resources :pricelists, except: [:show]
     resources :stores
     resources :cars
+    resources :bookings, except: [:new, :create, :destroy]
   end
 end

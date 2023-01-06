@@ -50,7 +50,7 @@ total_price = 0
     end
   end
   Booking.create(
-    booking_code: "#{idx}",
+    booking_code: "#{idx + 1}",
     rental_store: rental_store,
     return_store: return_store,
     car: car,

@@ -1,0 +1,41 @@
+<%= render "shared/errors", obj: @booking %>
+
+<table class="attr">
+  <tr>
+    <th>予約コード</th>
+    <td><%= @booking.booking_code %></td>
+  </tr>
+  <tr>
+    <th>予約車名</th>
+    <td><%= @booking.user.name %></td>
+  </tr>
+  <tr>
+    <th>予約車</th>
+    <td><%= @booking.car.name %></td>
+  </tr>
+  <tr>
+    <th>予約店舗</th>
+    <td><%= @booking.rental_store.name %></td>
+  </tr>
+  <tr>
+    <th>返却店舗</th>
+    <td><%= @booking.return_store.name %></td>
+  </tr>
+  <tr>
+    <th>レンタル開始時刻</th>
+    <td><%= @booking.rental_start&.strftime("%Y/%m/%d %H:%M") %></td>
+  </tr>
+  <tr>
+    <th>レンタル終了時刻</th>
+    <td><%= @booking.rental_end&.strftime("%Y/%m/%d %H:%M") %></td>
+  </tr>
+  <tr>
+    <th>料金</th>
+    <td><%= @booking.total_price %></td>
+  </tr>
+  <tr>
+    <% status_options = ["貸出前", "貸出中", "返却完了", "キャンセル"] %>
+    <th><%= form.label :status, "状態" %></th>
+    <td><%= form.select :status, status_options %></td>
+  </tr>
+</table>
