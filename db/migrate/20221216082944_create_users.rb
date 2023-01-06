@@ -8,7 +8,6 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :phone, null: false                          # 電話番号
       t.string :email, null: false                          # メールアドレス
       t.string :password_digest
-
       t.timestamps
     end
   end

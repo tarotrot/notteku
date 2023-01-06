@@ -7,7 +7,6 @@ class CreateStores < ActiveRecord::Migration[5.2]
       t.datetime :end_time, null: false                   # 営業終了時刻
       t.string :address, null: false                       # 住所
       t.string :phone_number, null: false                 # 電話番号
-
       t.timestamps
     end
   end

@@ -6,8 +6,6 @@ class Pricelist < ApplicationRecord
       greater_than: 0,
       allow_blank: true
     }
-  validates :season_start, presence: true
-  validates :season_end, presence: true
 
   validate :start_finish_check
 

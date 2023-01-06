@@ -29,6 +29,6 @@ class Store < ApplicationRecord
     uniqueness: { case_sensitive: false }
 
   def start_finish_check
-    errors.add(:end_time, "は開始時刻より遅い時間を選択してください") if self.start_time > self.end_time
+    errors.add(:end_time, "は開始時刻より遅い時間を選択してください") if self.start_time >= self.end_time
   end
 end
