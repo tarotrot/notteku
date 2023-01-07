@@ -1,0 +1,46 @@
+<% @page_title = "予約の詳細" %>
+
+<h1><%= @page_title %></h1>
+
+<div class="toolbar">
+  <%= link_to "予約情報編集", [:edit, @booking] %>
+</div>
+
+<table class="attr">
+  <tr>
+    <th>予約コード</th>
+    <td><%= @booking.booking_code %></td>
+  </tr>
+  <tr>
+    <th>予約者名</th>
+    <td><%= @booking.user.name %></td>
+  </tr>
+  <tr>
+    <th>予約車</th>
+    <td><%= @booking.car.name %></td>
+  </tr>
+  <tr>
+    <th>予約店舗</th>
+    <td><%= @booking.rental_store.name %></td>
+  </tr>
+  <tr>
+    <th>返却店舗</th>
+    <td><%= @booking.return_store.name %></td>
+  </tr>
+  <tr>
+    <th>レンタル開始時刻</th>
+    <td><%= @booking.rental_start&.strftime("%Y/%m/%d %H:%M") %></td>
+  </tr>
+  <tr>
+    <th>レンタル終了時刻</th>
+    <td><%= @booking.rental_end&.strftime("%Y/%m/%d %H:%M") %></td>
+  </tr>
+  <tr>
+    <th>料金</th>
+    <td><%= @booking.total_price %></td>
+  </tr>
+  <tr>
+    <th>状態</th>
+    <td><%= @booking.status %></td>
+  </tr>
+</table>

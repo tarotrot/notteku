@@ -3,6 +3,7 @@
 <h1><%= @page_title %></h1>
 
 <ul class="toolbar">
+  <%= menu_link_to "予約一覧", :bookings %>
   <%= menu_link_to "アカウント情報の編集", :edit_account %>
   <%= menu_link_to "パスワードの変更", :edit_password %>
   <%= link_to "退会", account_url, method: :delete,

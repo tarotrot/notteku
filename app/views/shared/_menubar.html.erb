@@ -1,6 +1,7 @@
 <nav class="menubar">
   <ul>
     <%= menu_link_to "TOP", :root %>
+    <%= menu_link_to "予約一覧", :bookings %>
     <% if current_user&.admin? %>
       <%= menu_link_to "管理ページ", :admin_root %>
     <% end %>

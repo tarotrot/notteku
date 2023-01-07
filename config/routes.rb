@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :destroy]
   resource :account, except: [:index]
   resource :password, only: [:show, :edit, :update]
+  resources :bookings
 
   namespace :admin do
     root "top#index"
