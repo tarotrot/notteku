@@ -28,22 +28,41 @@ class BookingsController < ApplicationController
   end
 
   def new
+    code = Booking.all.count
     @booking = Booking.new(
+      booking_code: code + 1,
+      user: current_user,
+      status: "貸出前",
       rental_store: Store.find_by(id: params[:booking][:rental_store].to_i),
       return_store: Store.find_by(id: params[:booking][:return_store].to_i),
       rental_start: params[:booking][:rental_start],
       rental_end: params[:booking][:rental_end],
-      car: Car.find_by(id: params[:booking][:car])
+      car: Car.find_by(id: params[:booking][:car]),
+      total_price: 1
     )
     render "confirm"
   end
 
   def create
-    @booking = Booking.new(booking_params)
-    if @booking.save
+    # @booking = Booking.new(booking_params)
+    code = Booking.all.count
+    @car = Car.find_by(id: params[:booking][:car].to_i)
+    @booking = Booking.new(
+      booking_code: code + 1,
+      user: current_user,
+      status: "貸出前",
+      rental_store: Store.find_by(id: params[:booking][:rental_store].to_i),
+      return_store: Store.find_by(id: params[:booking][:return_store].to_i),
+      rental_start: params[:booking][:rental_start],
+      rental_end: params[:booking][:rental_end],
+      car: @car,
+      total_price: params[:booking][:total_price].to_i
+    )
+    @car.assign_attributes(status: "準備中")
+    if @booking.save && @car.save
       redirect_to root_path, notice: "予約を登録しました。"
     else
-      render "new"
+      redirect_to root_path, notice: "失敗しました。"
     end
   end
 

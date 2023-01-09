@@ -1,6 +1,43 @@
+<% @page_title = "予約情報確認" %>
 
-<%= @booking.rental_store.name%>
-<%= @booking.return_store.name%>
-<%= @booking.rental_start%>
-<%= @booking.rental_end%>
-<%= @booking.car.id%>
+<h1><%= @page_title %></h1>
+
+<table class="attr">
+  <tr>
+    <th>予約車</th>
+    <td><%= @booking.car.name %></td>
+  </tr>
+  <tr>
+    <th>予約店舗</th>
+    <td><%= @booking.rental_store.name %></td>
+  </tr>
+  <tr>
+    <th>返却店舗</th>
+    <td><%= @booking.return_store.name %></td>
+  </tr>
+  <tr>
+    <th>レンタル開始時刻</th>
+    <td><%= @booking.rental_start&.strftime("%Y/%m/%d %H:%M") %></td>
+  </tr>
+  <tr>
+    <th>レンタル終了時刻</th>
+    <td><%= @booking.rental_end&.strftime("%Y/%m/%d %H:%M") %></td>
+  </tr>
+  <tr>
+    <th>料金</th>
+    <td><%= @booking.total_price %></td>
+  </tr>
+</table>
+
+<%= form_for @booking do |form| %>
+  <%= form.hidden_field :rental_store, :value => @booking.rental_store.id %>
+  <%= form.hidden_field :return_store, :value => @booking.return_store.id %>
+  <%= form.hidden_field :rental_start, :value => @booking.rental_start %>
+  <%= form.hidden_field :rental_end, :value => @booking.rental_end %>
+  <%= form.hidden_field :booking_code, :value => @booking.booking_code %>
+  <%= form.hidden_field :user, :value => @booking.user %>
+  <%= form.hidden_field :car, :value => @booking.car.id %>
+  <%= form.hidden_field :status, :value => @booking.status %>
+  <%= form.hidden_field :total_price, :value => @booking.total_price %>
+  <div><%= form.submit "予約確定"%></div>
+<% end %>
