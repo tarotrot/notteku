@@ -1,7 +1,7 @@
 class TopController < ApplicationController
   def index
   end
-  
+
   def bad_request
     raise ActionController::ParameterMissing, ""
   end

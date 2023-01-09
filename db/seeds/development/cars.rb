@@ -1,7 +1,7 @@
 car_codes = ["hondaNBox1", "toyotaAqua1", "FerrariRoma1", "SubaruLevorg1", "daihatsuHijetTruck1", "toyotaYaris1"]
 car_types = ["乗用車", "軽自動車", "高級車", "ミニバン・ワゴン車", "トラック"]
-names = ["ホンダ N-BOX", "トヨタ アクア", "フェラーリ ローマ", "スバル レヴォーグ", "ダイハツ　ハイゼットトラック", "トヨタ"]
-status = ["貸出中", "準備中", "在庫"]
+names = ["ホンダ N-BOX", "トヨタ アクア", "フェラーリ ローマ", "スバル レヴォーグ", "ダイハツ　ハイゼットトラック", "トヨタ ヤリス"]
+status = ["貸出中", "準備中", "予約可能"]
 price = [800, 600, 3000, 500, 500]
 stores = ["生田店", "神田店"]
 0.upto(5) do |idx|

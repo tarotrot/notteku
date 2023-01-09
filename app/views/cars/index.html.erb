@@ -1,0 +1,30 @@
+<% @page_title = "車検索結果" %>
+<h1><%= @page_title %></h1>
+<% if @cars.present? %>
+  <%= form_for @booking, method: :get, url: :new_booking do |form| %>
+    <%= form.hidden_field :rental_store, :value => @rental_store.id %>
+    <%= form.hidden_field :return_store, :value => @return_store.id %>
+    <%= form.hidden_field :rental_start, :value => @rental_start_datetime %>
+    <%= form.hidden_field :rental_end, :value => @rental_end_datetime %>
+      <table class="list">
+        <thead>
+          <tr>
+            <th>選択</th>
+            <th>車名</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @cars.each do |car| %>
+          <tr>
+            <td><%= form.radio_button :car, car.id %></td>
+            <td><%= car.name %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= form.submit '確認画面へ' %>
+    <% end %>
+  <%# <%= paginate @users %> %>
+<% else %>
+  <p>車情報がありません。</p>
+<% end %>

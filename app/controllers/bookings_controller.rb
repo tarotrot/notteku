@@ -28,7 +28,14 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @booking = Booking.new
+    @booking = Booking.new(
+      rental_store: Store.find_by(id: params[:booking][:rental_store].to_i),
+      return_store: Store.find_by(id: params[:booking][:return_store].to_i),
+      rental_start: params[:booking][:rental_start],
+      rental_end: params[:booking][:rental_end],
+      car: Car.find_by(id: params[:booking][:car])
+    )
+    render "confirm"
   end
 
   def create

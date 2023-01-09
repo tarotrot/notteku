@@ -19,7 +19,7 @@
     <td><%= form.text_field :name %></td>
   </tr>
   <tr>
-    <% status_options = ["準備中", "在庫"] %>
+    <% status_options = ["準備中", "予約可能"] %>
     <th><%= form.label :status, "状態" %></th>
     <td><%= form.select :status, status_options %></td>
   </tr>

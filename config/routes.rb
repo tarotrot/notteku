@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :destroy]
   resource :account, except: [:index]
   resource :password, only: [:show, :edit, :update]
-  resources :bookings
+  resources :bookings do
+    get  "confirm" # 確認画面
+  end
+  resources :cars do
+    get "search", on: :collection
+  end
 
   namespace :admin do
     root "top#index"
