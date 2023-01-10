@@ -17,15 +17,27 @@
   </tr>
   <tr>
     <th>予約車</th>
-    <td><%= @booking.car.name %></td>
+    <% if @booking.car.present? %>
+      <td><%= @booking.car.name %></td>
+    <% else %>
+      <td>車が見当たりません</td>
+    <% end %>
   </tr>
   <tr>
     <th>予約店舗</th>
-    <td><%= @booking.rental_store.name %></td>
+    <% if @booking.rental_store.present? %>
+      <td><%= @booking.rental_store.name %></td>
+    <% else %>
+      <td>店舗が見つかりません</td>
+    <% end %>
   </tr>
   <tr>
     <th>返却店舗</th>
-    <td><%= @booking.return_store.name %></td>
+    <% if @booking.return_store.present? %>
+      <td><%= @booking.return_store.name %></td>
+    <% else %>
+      <td>店舗が見つかりません</td>
+    <% end %>
   </tr>
   <tr>
     <th>レンタル開始時刻</th>

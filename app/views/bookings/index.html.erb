@@ -17,7 +17,11 @@
       <% @bookings.each do |booking| %>
         <tr>
           <td style="text-align: right"><%= link_to booking.booking_code, booking%></td>
-          <td><%= booking.car.name %></td>
+          <% if booking.car.present? %>
+            <td><%= booking.car.name %></td>
+          <% else %>
+            <td><%= "車が見当たりません" %></td>
+          <% end %>
           <td><%= booking.rental_start&.strftime("%Y/%m/%d %H:%M") %></td>
           <td><%= booking.rental_end&.strftime("%Y/%m/%d %H:%M") %></td>
           <td><%= booking.status%></td>
