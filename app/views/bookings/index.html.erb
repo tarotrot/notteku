@@ -26,7 +26,7 @@
           <td><%= booking.rental_end&.strftime("%Y/%m/%d %H:%M") %></td>
           <td><%= booking.status%></td>
           <td>
-            <%= link_to "予約状況変更", [:edit, booking] %>
+            <%= link_to "予約状況変更", edit_booking_path(booking, edit_status: "状態変更")%>
           </td>
         </tr>
       <% end %>

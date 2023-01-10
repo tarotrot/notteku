@@ -1,0 +1,64 @@
+<%= render "shared/errors", obj: @booking %>
+
+<table class="attr">
+  <% if params[:edit_status] == "状態変更" %>
+    <%= form.hidden_field :edit_status, :value => "状態変更" %>
+    <tr>
+      <th>予約車</th>
+      <td><%= @booking.car.name %></td>
+    </tr>
+    <tr>
+      <th>予約店舗</th>
+      <td><%= @booking.rental_store.name %></td>
+    </tr>
+    <tr>
+      <th>返却店舗</th>
+      <td><%= @booking.return_store.name %></td>
+    </tr>
+    <tr>
+      <th>レンタル開始時刻</th>
+      <td><%= @booking.rental_start&.strftime("%Y/%m/%d %H:%M") %></td>
+    </tr>
+    <tr>
+      <th>レンタル終了時刻</th>
+      <td><%= @booking.rental_end&.strftime("%Y/%m/%d %H:%M") %></td>
+    </tr>
+    <tr>
+      <% status_options = ["貸出前", "キャンセル"] %>
+      <th><%= form.label :status, "状態" %></th>
+      <td><%= form.select :status, status_options %></td>
+    </tr>
+  <% else %>
+    <tr>
+      <th>予約車</th>
+      <td><%= @booking.car.name %></td>
+    </tr>
+    <tr>
+      <th>予約店舗</th>
+      <td><%= @booking.rental_store.name %></td>
+    </tr>
+    <%= form.hidden_field :edit_status, :value => "情報変更" %>
+    <tr>
+      <th>返却店舗</th>
+      <td>
+        <%= select_tag(
+              :return_store,
+              options_for_select(
+                Store.all.map{ |store| [store.name, store.id] } ,params[:return_store]
+              )
+            )
+        %>
+      </td>
+    </tr>
+    <tr>
+      <th><%= form.label :start_time, "営業開始時間",
+                for: "booking_start_time_1i" %></th>
+      <td><%= form.datetime_select :rental_start, use_month_numbers: true %></td>
+    </tr>
+    <tr>
+      <th><%= form.label :end_time, "営業終了時間",
+                for: "booking_end_time_1i" %></th>
+      <td><%= form.datetime_select :rental_end, use_month_numbers: true %></td>
+    </tr>
+  <% end %>
+</table>

@@ -14,12 +14,17 @@ class BookingsController < ApplicationController
   # 予約情報編集フォーム
   def edit
     @booking = Booking.find(params[:id])
+    if @booking.status == "キャンセル" || @booking.rental_start <= Time.now + 2.hours
+      redirect_to :bookings, notice: "予約変更できません"
+    end
   end
 
   # 予約情報の更新
   def update
     @booking = Booking.find(params[:id])
     @booking.assign_attributes(booking_params)
+    store = Store.find_by(id: params[:return_store].to_i)
+    @booking.assign_attributes(return_store: store)
     if @booking.save
       redirect_to :bookings, notice: "予約情報を更新しました。"
     else
@@ -92,6 +97,9 @@ class BookingsController < ApplicationController
   # ストロング・パラメータ
   private def booking_params
     params.require(:booking).permit(
+      :return_store_id,
+      :rental_start,
+      :rental_end,
       :status
     )
   end

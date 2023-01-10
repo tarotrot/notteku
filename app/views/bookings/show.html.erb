@@ -3,7 +3,7 @@
 <h1><%= @page_title %></h1>
 
 <div class="toolbar">
-  <%= link_to "予約情報編集", [:edit, @booking] %>
+  <%= link_to "予約情報編集", edit_booking_path(@booking, edit_status: "情報変更") %>
 </div>
 
 <table class="attr">
