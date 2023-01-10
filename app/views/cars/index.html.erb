@@ -1,5 +1,3 @@
-
-
 <% @page_title = "車検索結果" %>
 <h1><%= @page_title %></h1>
 <% if @cars.present? %>
@@ -8,7 +6,6 @@
     <%= form.hidden_field :return_store, :value => @return_store.id %>
     <%= form.hidden_field :rental_start, :value => @rental_start_datetime %>
     <%= form.hidden_field :rental_end, :value => @rental_end_datetime %>
-    <%# <%= form.hidden_field :total_price, :value => @total_price %> %>
       <table class="list">
         <thead>
           <tr>

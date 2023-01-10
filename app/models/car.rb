@@ -3,8 +3,6 @@ class Car < ApplicationRecord
     def search(query)
       rel = order("id")
       if query.present?
-        # rel = rel.where("name LIKE ? OR full_name LIKE ?",
-        #   "%#{query}%", "%#{query}%")
         rel = rel.where("name LIKE ?", "%#{query}%")
       end
       rel
