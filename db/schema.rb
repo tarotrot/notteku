@@ -14,9 +14,9 @@ ActiveRecord::Schema.define(version: 2022_12_16_083150) do
 
   create_table "bookings", force: :cascade do |t|
     t.string "booking_code", null: false
-    t.integer "rental_store_id", null: false
-    t.integer "return_store_id", null: false
-    t.integer "car_id", null: false
+    t.integer "rental_store_id"
+    t.integer "return_store_id"
+    t.integer "car_id"
     t.integer "user_id", null: false
     t.datetime "rental_start", null: false
     t.datetime "rental_end", null: false

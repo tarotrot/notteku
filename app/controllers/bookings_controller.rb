@@ -31,43 +31,61 @@ class BookingsController < ApplicationController
     code = Booking.all.count
     car_and_price = params[:booking][:car].split
     car = Car.find_by(id: car_and_price[0].to_i)
-    price = car_and_price[1]
-    puts car.name
-    puts price
-    @booking = Booking.new(
-      booking_code: code + 1,
-      user: current_user,
-      status: "貸出前",
-      rental_store: Store.find_by(id: params[:booking][:rental_store].to_i),
-      return_store: Store.find_by(id: params[:booking][:return_store].to_i),
-      rental_start: params[:booking][:rental_start],
-      rental_end: params[:booking][:rental_end],
-      car: car,
-      total_price: price
-    )
-    render "confirm"
+    @rental_store = Store.find_by(id: params[:booking][:rental_store].to_i)
+    @return_store = Store.find_by(id: params[:booking][:return_store].to_i)
+    if car.nil?
+      redirect_to root_path, notice: "車が見つかりません。"
+    elsif @rental_store.nil? || @return_store.nil?
+      redirect_to root_path, notice: "店舗が見つかりません。"
+    else
+      price = car_and_price[1]
+      puts car.name
+      puts price
+      @booking = Booking.new(
+        booking_code: code + 1,
+        user: current_user,
+        status: "貸出前",
+        rental_store: @rental_store,
+        return_store: @return_store,
+        rental_start: params[:booking][:rental_start],
+        rental_end: params[:booking][:rental_end],
+        car: car,
+        total_price: price
+      )
+      render "confirm"
+    end
   end
 
   def create
     @booking = Booking.new(booking_params)
     code = Booking.all.count
     @car = Car.find_by(id: params[:booking][:car].to_i)
-    @booking = Booking.new(
-      booking_code: code + 1,
-      user: current_user,
-      status: "貸出前",
-      rental_store: Store.find_by(id: params[:booking][:rental_store].to_i),
-      return_store: Store.find_by(id: params[:booking][:return_store].to_i),
-      rental_start: params[:booking][:rental_start],
-      rental_end: params[:booking][:rental_end],
-      car: @car,
-      total_price: params[:booking][:total_price].to_i
-    )
-    @car.assign_attributes(status: "準備中")
-    if @booking.save && @car.save
-      redirect_to root_path, notice: "予約を登録しました。"
+    @rental_store = Store.find_by(id: params[:booking][:rental_store].to_i)
+    @return_store = Store.find_by(id: params[:booking][:return_store].to_i)
+    if @car.nil?
+      redirect_to root_path, notice: "車が見つかりません"
+    elsif @car.status != "予約可能"
+      redirect_to root_path, notice: "この車は予約できません"
+    elsif @rental_store.nil? || @return_store.nil?
+      redirect_to root_path, notice: "店舗が見つかりません"
     else
-      redirect_to root_path, notice: "失敗しました。"
+      @booking = Booking.new(
+        booking_code: code + 1,
+        user: current_user,
+        status: "貸出前",
+        rental_store: @rental_store,
+        return_store: @return_store,
+        rental_start: params[:booking][:rental_start],
+        rental_end: params[:booking][:rental_end],
+        car: @car,
+        total_price: params[:booking][:total_price].to_i
+      )
+      @car.assign_attributes(status: "準備中")
+      if @booking.save && @car.save
+        redirect_to root_path, notice: "予約を登録しました。"
+      else
+        redirect_to root_path, notice: "失敗しました。"
+      end
     end
   end
 

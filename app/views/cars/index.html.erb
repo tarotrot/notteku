@@ -1,3 +1,5 @@
+
+
 <% @page_title = "車検索結果" %>
 <h1><%= @page_title %></h1>
 <% if @cars.present? %>
@@ -18,7 +20,7 @@
         <tbody>
         <% @cars.each do |car| %>
           <tr>
-            <td><%= form.radio_button :car, [car.id, @total_price[car.name]]%></td>
+            <td><%= form.radio_button :car, [car.id, @total_price[car.name]], required: true%></td>
             <td><%= car.name %></td>
             <td><%= @total_price[car.name].to_s + "円" %></td>
           </tr>

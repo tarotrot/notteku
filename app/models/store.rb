@@ -1,6 +1,7 @@
 class Store < ApplicationRecord
-  has_many :bookings
-  has_many :cars, dependent: :destroy
+  has_many :rental_store_booking, class_name: "Booking", foreign_key: "rental_store_id", dependent: :nullify
+  has_many :return_store_booking, class_name: "Booking", foreign_key: "return_store_id", dependent: :nullify
+  has_many :cars, dependent: :nullify
 
   validates :store_code, presence: true,
     format: { with: /\A[a-zA-Z0-9]+\z/, allow_blank: true },
