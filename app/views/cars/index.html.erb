@@ -6,18 +6,21 @@
     <%= form.hidden_field :return_store, :value => @return_store.id %>
     <%= form.hidden_field :rental_start, :value => @rental_start_datetime %>
     <%= form.hidden_field :rental_end, :value => @rental_end_datetime %>
+    <%# <%= form.hidden_field :total_price, :value => @total_price %> %>
       <table class="list">
         <thead>
           <tr>
             <th>選択</th>
             <th>車名</th>
+            <th>料金</th>
           </tr>
         </thead>
         <tbody>
         <% @cars.each do |car| %>
           <tr>
-            <td><%= form.radio_button :car, car.id %></td>
+            <td><%= form.radio_button :car, [car.id, @total_price[car.name]]%></td>
             <td><%= car.name %></td>
+            <td><%= @total_price[car.name].to_s + "円" %></td>
           </tr>
         <% end %>
         </tbody>

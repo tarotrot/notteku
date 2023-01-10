@@ -29,6 +29,11 @@ class BookingsController < ApplicationController
 
   def new
     code = Booking.all.count
+    car_and_price = params[:booking][:car].split
+    car = Car.find_by(id: car_and_price[0].to_i)
+    price = car_and_price[1]
+    puts car.name
+    puts price
     @booking = Booking.new(
       booking_code: code + 1,
       user: current_user,
@@ -37,14 +42,14 @@ class BookingsController < ApplicationController
       return_store: Store.find_by(id: params[:booking][:return_store].to_i),
       rental_start: params[:booking][:rental_start],
       rental_end: params[:booking][:rental_end],
-      car: Car.find_by(id: params[:booking][:car]),
-      total_price: 1
+      car: car,
+      total_price: price
     )
     render "confirm"
   end
 
   def create
-    # @booking = Booking.new(booking_params)
+    @booking = Booking.new(booking_params)
     code = Booking.all.count
     @car = Car.find_by(id: params[:booking][:car].to_i)
     @booking = Booking.new(
