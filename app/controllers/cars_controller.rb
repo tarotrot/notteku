@@ -22,8 +22,10 @@ class CarsController < ApplicationController
     rental_end_time = end_time.strftime('%H%M').to_i
     store_start_time = @rental_store.start_time.strftime('%H%M').to_i
     store_end_time = @return_store.end_time.strftime('%H%M').to_i
-    if @cars.nil? || rental_start_time < store_start_time || store_end_time < rental_end_time
+    if @cars.nil?
       redirect_to root_path, notice: "該当する車が見つかりません。"
+    elsif rental_start_time < store_start_time || store_end_time < rental_end_time
+      redirect_to root_path, notice: "営業時間外です"
     elsif search_param.invalid?
       redirect_to root_path, notice: "レンタル開始は返却より前に設定してください"
     else
