@@ -1,7 +1,7 @@
 class Admin::BookingsController < Admin::Base
   # 予約一覧
   def index
-    @bookings = Booking.order(params[:id])#.page(params[:page]).per(15)
+    @bookings = Booking.order(params[:id]).page(params[:page]).per(15)
   end
 
   # 予約情報の詳細

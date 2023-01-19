@@ -3,7 +3,7 @@ class BookingsController < ApplicationController
 
   # 予約一覧
   def index
-    @bookings = Booking.where(user_id: current_user.id).order(params[:id])#.page(params[:page]).per(15)
+    @bookings = Booking.where(user_id: current_user.id).order(params[:id]).page(params[:page]).per(15)
   end
 
   # 予約情報の詳細
@@ -33,10 +33,6 @@ class BookingsController < ApplicationController
         redirect_to :bookings, notice: "店舗が見つかりません。"
       elsif rental_start_time < return_store.start_time.strftime('%H%M').to_i || return_store.end_time.strftime('%H%M').to_i < rental_end_time
         redirect_to :bookings, notice: "営業時間外です。"
-      # elsif @booking.save
-      #   redirect_to :bookings, notice: "予約情報を更新しました。"
-      # else
-      #   render "edit"
       else
         time_elapsed = ((@booking.rental_end - @booking.rental_start) / 3600).ceil
         price = Pricelist.find_by(name: "基本プラン").basic_price

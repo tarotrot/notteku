@@ -1,7 +1,7 @@
 class Admin::StoresController < Admin::Base
   # 店舗一覧
   def index
-    @stores = Store.order(params[:id])#.page(params[:page]).per(15)
+    @stores = Store.order(params[:id]).page(params[:page]).per(15)
   end
 
   # 店舗情報の詳細

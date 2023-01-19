@@ -1,7 +1,7 @@
 class Admin::CarsController < Admin::Base
   # 車一覧
   def index
-    @cars = Car.order(params[:id])#.page(params[:page]).per(15)
+    @cars = Car.order(params[:id]).page(params[:page]).per(15)
   end
 
   # 車情報の詳細

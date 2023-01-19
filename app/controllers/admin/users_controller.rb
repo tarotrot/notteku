@@ -1,7 +1,7 @@
 class Admin::UsersController < Admin::Base
   # ユーザ一覧
   def index
-    @users = User.order(params[:id])#.page(params[:page]).per(15)
+    @users = User.order(params[:id]).page(params[:page]).per(15)
   end
 
   # ユーザ情報の詳細

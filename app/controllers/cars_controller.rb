@@ -6,7 +6,7 @@ class CarsController < ApplicationController
     @cars = Car.search(params[:name])
     @cars = @cars.where(store: params[:rental_store])
     @cars = @cars.where(status: "予約可能")
-    @cars = @cars.where(car_type: params[:car_type])
+    @cars = @cars.where(car_type: params[:car_type]).page(params[:page]).per(15)
     rental_start_month = ten_digit(params[:rental_start]["(2i)"])
     rental_start_day = ten_digit(params[:rental_start]["(3i)"])
     rental_end_month = ten_digit(params[:rental_end]["(2i)"])

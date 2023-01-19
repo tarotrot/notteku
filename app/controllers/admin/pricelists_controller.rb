@@ -1,7 +1,7 @@
 class Admin::PricelistsController < Admin::Base
   # 料金表
   def index
-    @pricelists = Pricelist.order(params[:id])#.page(params[:page]).per(15)
+    @pricelists = Pricelist.order(params[:id]).page(params[:page]).per(15)
   end
 
   # 料金編集フォーム

@@ -24,9 +24,9 @@
         <% end %>
         </tbody>
       </table>
+      <%= paginate @cars %>
       <%= form.submit '確認画面へ' %>
     <% end %>
-  <%# <%= paginate @users %> %>
 <% else %>
   <p>車情報がありません。</p>
 <% end %>
