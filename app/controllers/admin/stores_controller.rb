@@ -55,6 +55,7 @@ class Admin::StoresController < Admin::Base
       :start_time,
       :end_time,
       :address,
+      :postal_code,
       :phone_number
     )
   end

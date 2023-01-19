@@ -24,6 +24,10 @@ class Store < ApplicationRecord
   validates :address, presence: true,
     length: { maximum: 99, allow_blank: true }
 
+  validates :postal_code, presence: true,
+    format: { with: /\A[0-9]*\z/, allow_blank: false },
+    length: { minimum: 7, maximum: 7, allow_blank: true }
+
   validates:phone_number, presence: true,
     format: { with: /\A[0-9()-][0-9()-]*\z/, allow_blank: false },
     length: { maximum: 19 },

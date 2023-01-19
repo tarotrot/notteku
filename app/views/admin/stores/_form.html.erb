@@ -20,6 +20,10 @@
     <td><%= form.time_select :end_time %></td>
   </tr>
   <tr>
+    <th><%= form.label :postal_code, "郵便番号(ハイフン省略)" %></th>
+    <td><%= form.text_field :postal_code %></td>
+  </tr>
+  <tr>
     <th><%= form.label :address, "住所" %></th>
     <td><%= form.text_field :address %></td>
   </tr>

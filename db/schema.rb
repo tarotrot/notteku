@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2022_12_16_083150) do
     t.string "name", null: false
     t.datetime "start_time", null: false
     t.datetime "end_time", null: false
+    t.string "postal_code", null: false
     t.string "address", null: false
     t.string "phone_number", null: false
     t.datetime "created_at", null: false
