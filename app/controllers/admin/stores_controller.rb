@@ -43,8 +43,20 @@ class Admin::StoresController < Admin::Base
   # 店舗の削除
   def destroy
     @store = Store.find(params[:id])
-    @store.destroy
-    redirect_to :admin_stores, notice: "店舗を削除しました。"
+    possible_destroy = true
+    @bookings = Booking.where(status: "貸出前").or(Booking.where(status: "貸出中"))
+    @bookings.all.each do |booking|
+      if booking.rental_store == @store || booking.return_store == @store
+        possible_destroy = false
+        break
+      end
+    end
+    if possible_destroy == true
+      @store.destroy
+      redirect_to :admin_stores, notice: "店舗を削除しました。"
+    else
+      redirect_to :admin_stores, notice: "選択した店舗に予約が入っています"
+    end
   end
 
   # ストロング・パラメータ
