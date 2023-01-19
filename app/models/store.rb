@@ -29,7 +29,7 @@ class Store < ApplicationRecord
     length: { minimum: 7, maximum: 7, allow_blank: true }
 
   validates:phone_number, presence: true,
-    format: { with: /\A[0-9()-][0-9()-]*\z/, allow_blank: false },
+    format: { with: /\A[0-9()-][0-9()-]*\z/, allow_blank: true },
     length: { maximum: 19 },
     uniqueness: { case_sensitive: false }
 

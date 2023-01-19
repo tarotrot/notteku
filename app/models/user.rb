@@ -7,7 +7,7 @@ class User < ApplicationRecord
     length: { maximum: 19, allow_blank: true }
   validates :birthday, date: { before: Time.current.to_date + 1 }
   validates:phone, presence: true,
-    format: { with: /\A[0-9()-][0-9()-]*\z/, allow_blank: false },
+    format: { with: /\A[0-9()-][0-9()-]*\z/, allow_blank: true },
     length: { maximum: 19 }
   validates :email, presence:true, email: { allow_blank: true },
     uniqueness: { case_sensitive: false }
