@@ -43,8 +43,20 @@ class Admin::CarsController < Admin::Base
   # 車の削除
   def destroy
     @car = Car.find(params[:id])
-    @car.destroy
-    redirect_to :admin_cars, notice: "車を削除しました。"
+    possible_destroy = true
+    @bookings = Booking.where(status: "貸出前").or(Booking.where(status: "貸出中"))
+    @bookings.all.each do |booking|
+      if booking.car == @car
+        possible_destroy = false
+        break
+      end
+    end
+    if possible_destroy == true
+      @car.destroy
+      redirect_to :admin_cars, notice: "車を削除しました。"
+    else
+      redirect_to :admin_cars, notice: "選択した車に予約が入っています"
+    end
   end
 
   # ストロング・パラメータ
