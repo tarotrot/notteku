@@ -28,6 +28,8 @@
       <th><%= form.label :status, "状態" %></th>
       <td><%= form.select :status, status_options %></td>
     </tr>
+    <%= form.hidden_field :rental_store, :value => @booking.rental_store.id %>
+    <%= form.hidden_field :return_store, :value => @booking.return_store.id %>
   <% else %>
     <tr>
       <th>予約車</th>

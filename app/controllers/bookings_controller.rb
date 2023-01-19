@@ -23,18 +23,27 @@ class BookingsController < ApplicationController
   def update
     @booking = Booking.find(params[:id])
     @booking.assign_attributes(booking_params)
-    return_store = Store.find_by(id: params[:return_store].to_i)
-    rental_start_time = @booking.rental_start.strftime('%H%M').to_i
-    rental_end_time = @booking.rental_end.strftime('%H%M').to_i
-    @booking.assign_attributes(return_store: return_store)
-    if return_store.nil?
-      redirect_to :bookings, notice: "店舗が見つかりません。"
-    elsif rental_start_time < return_store.start_time.strftime('%H%M').to_i || return_store.end_time.strftime('%H%M').to_i < rental_end_time
-      redirect_to :bookings, notice: "営業時間外です。"
-    elsif @booking.save
-      redirect_to :bookings, notice: "予約情報を更新しました。"
-    else
-      render "edit"
+    puts params[:booking][:edit_status]
+    if params[:booking][:edit_status] == "情報変更"
+      return_store = Store.find_by(id: params[:return_store].to_i)
+      rental_start_time = @booking.rental_start.strftime('%H%M').to_i
+      rental_end_time = @booking.rental_end.strftime('%H%M').to_i
+      @booking.assign_attributes(return_store: return_store)
+      if return_store.nil?
+        redirect_to :bookings, notice: "店舗が見つかりません。"
+      elsif rental_start_time < return_store.start_time.strftime('%H%M').to_i || return_store.end_time.strftime('%H%M').to_i < rental_end_time
+        redirect_to :bookings, notice: "営業時間外です。"
+      elsif @booking.save
+        redirect_to :bookings, notice: "予約情報を更新しました。"
+      else
+        render "edit"
+      end
+    elsif params[:booking][:edit_status] == "状態変更"
+      if @booking.save
+        redirect_to :bookings, notice: "予約情報を更新しました。"
+      else
+        render "edit"
+      end
     end
   end
 
