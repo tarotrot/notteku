@@ -1,5 +1,8 @@
-<% @page_title = "予約情報変更" %>
-
+<% if params[:edit_status] == "状態変更" %>
+  <% @page_title = "予約キャンセル" %>
+<% else %>
+  <% @page_title = "予約内容変更" %>
+<% end %>
 <h1><%= @page_title %></h1>
 
 <div class="toolbar"><%= link_to "予約一覧に戻る", :bookings %></div>

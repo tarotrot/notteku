@@ -39,7 +39,10 @@ class BookingsController < ApplicationController
         render "edit"
       end
     elsif params[:booking][:edit_status] == "状態変更"
-      if @booking.save
+      @car = Car.find_by(id: @booking.car.id)
+      puts @car.status
+      @car.assign_attributes(status: "予約可能")
+      if @booking.save && @car.save
         redirect_to :bookings, notice: "予約情報を更新しました。"
       else
         render "edit"
