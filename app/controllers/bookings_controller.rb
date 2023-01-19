@@ -14,7 +14,7 @@ class BookingsController < ApplicationController
   # 予約情報編集フォーム
   def edit
     @booking = Booking.find(params[:id])
-    if @booking.status == "キャンセル" || @booking.rental_start <= Time.now + 2.hours
+    if @booking.status == "キャンセル" || @booking.status == "返却完了" || @booking.rental_start <= Time.now + 2.hours
       redirect_to :bookings, notice: "予約変更できません"
     end
   end
