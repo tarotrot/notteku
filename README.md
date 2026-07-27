@@ -1,24 +1,24 @@
-# README
+# レンタカー予約アプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+Ruby on Railsを用いて開発したレンタカー予約Webアプリケーションです。
+ユーザーが車両を検索し、レンタカーの予約や予約内容の管理を行えるアプリケーションを開発しました。
 
-Things you may want to cover:
+## 使用技術
+- Ruby
+- Ruby on Rails
 
-* Ruby version
+## 主な機能
+- ユーザー登録・ログイン機能
+- ユーザー情報管理機能
+- 店舗管理機能
+- 車両管理機能
+- 車両検索機能
+- レンタカー予約機能
+- 予約内容の変更・キャンセル機能
+- 予約料金計算機能
+- バリデーションによる入力制御
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 開発内容
+レンタカーの予約サービスを想定し、ユーザー側の予約機能と管理者側の店舗・車両管理機能を実装しました。
+また、予約状況や入力内容に応じた制御を行い、適切に予約管理ができるよう開発しました。
